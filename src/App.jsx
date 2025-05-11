@@ -1,15 +1,16 @@
 import "./app.css";
-import List from "./components/List";
+import Card from "./components/Card";
+import ListComponent from "./components/ListComponent";
 
 function App() {
-  const colors = ['red', 'green', 'blue']
-  const hobbies = ['game', 'reading', 'music']
-
+  const students = [
+    {id:1, name: "David", age:20},
+    {id:2, name: "Emily", age:30},
+    {id:3, name: "Michael", age:40},
+  ]
   return (
     <>
-     <List arrData={colors} />
-     <List arrData={hobbies} />
-     <List />
+      <ListComponent arrData={students} Component={Card}/>
     </>
   );
 }
