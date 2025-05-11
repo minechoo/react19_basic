@@ -15,6 +15,7 @@ function App() {
       <h1>컴포넌트 재사용 방법</h1>
       <Btn label={'로그인'} handelClick={handleLogin}/>
       <Btn label={'로그아웃'} handelClick={handleLogout}/>
+      <Btn />
     </>
   );
 }
