@@ -1,28 +1,20 @@
 import "./app.css";
+import Btn from "./components/Btn";
 
 function App() {
-  //파라미터로 인수값 전달이 필요없는 함수
-  const handleClick1 = () => {
-    alert("인수전달이 필요 없는 함수");
-  };
+  const handleLogin=()=>{
+    alert('로그인되었습니다')
+  }
 
-  //파라미터로 인수값 전달이 필요한 함수
-  const handleClick2 = (text) => {
-    alert(text);
-  };
+  const handleLogout=()=>{
+    alert('로그아웃되었습니다')
+  }
 
   return (
     <>
-      <h1>JSX요소에 이벤트 핸들러 연결</h1>
-
-      <button onClick={handleClick1}>
-        클릭시 인수 전달이 필요없는 함수 호출
-      </button>
-
-      {/* 아래와 같이 인수전달이 필요한 함수는 다시 상위 함수로 wrapping처리필요 */}
-      <button onClick={() => handleClick2("텍스트")}>
-        클릭시 인수 전달이 필요한 함수 호출
-      </button>
+      <h1>컴포넌트 재사용 방법</h1>
+      <Btn label={'로그인'} handelClick={handleLogin}/>
+      <Btn label={'로그아웃'} handelClick={handleLogout}/>
     </>
   );
 }

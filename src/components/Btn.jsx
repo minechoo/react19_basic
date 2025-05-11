@@ -1,8 +1,9 @@
 import React from 'react'
 
-export default function Btn() {
+export default function Btn(props) {
+  console.log(props)
   return (
-    <button>Btn</button>
+    <button onClick={props.handelClick}>{props.label}</button>
   )
 }
 
