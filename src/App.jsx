@@ -2,38 +2,28 @@ import { useRef } from 'react';
 import './app.css';
 
 function App() {
-	const num = useRef(0);
-	console.log(num);
-
-	const minus = () => {
-		num.current = num.current - 1;
-		console.log(num);
-	};
-	const plus = () => {
-		num.current = num.current + 1;
-		console.log(num);
-	};
+	const inputRef = useRef(null);
 
 	return (
 		<>
 			<h1>React hook</h1>
-			<button onClick={minus}>-</button>
-			<button onClick={plus}>+</button>
+			{/* 빈 참조객체를 언하는 돔요소에 연결결 */}
+			<input type='text' ref={inputRef} />
+			{/* 버튼을 클릭하기 전까지는 input요소의 값을 확인 불가능하고 해당 input에 변경되는 value값은 리액트가 관리하지 않음 - 비제어 컴포넌트 */}
+			<button onClick={() => console.log(inputRef.current.value)}>인풋값확인</button>
 		</>
 	);
 }
 export default App;
 /*
-  useRef : 화면 렌더링에 직접적으로 관여하지 않는 덜 중요한 데이터를 상태가 아닌 참조객체로 관리하기 위한 훅
-  - 덜 중요한 데이터를 상태에 담으면 계속해서 재랜더링이 발생하기 때문에 비효율적
-  - 그렇다고 일반변수에 담으면 컴포넌트가 재 호출될때마다 해당 값이 사라짐
-  - useRef로 생성한 참조객체에 담아놓은 값은 컴포넌트가 재호출되더라도 값이 유지가됨
-  - 값이 유지가되는것 뿐 해당 값이 변경되도 컴포넌트를 재랜더링 처리하진 않음
+  리액트에서 폼 데이터를 관리하는 2가지 방법
+  1. 비제어 컴포넌트
+  : useRef로 폼 값을 담아놓고 필요할때마다 useRef에 있는 폼의 값을 직접 추출해서 활용하는 방법
+  : 장점 - 일반 HTML, JS 개발하듯이 개발로직이 직관적
+  : 단점 - 관리해야될 폼 데이터가 많아질수록 개발자가 일일이 수동으로 처리해야될 값도 많아짐 
 
-  useRef를 통한 참조객체를 활용하는 사례
-  - 돔요소를 직접 선택하기 위해서 JSX요소를 참조
-  - 화면 렌더링에 직접적인 관여를 하는 데이터는 아니지만 모션등 부가적인 로직처리를 위해 기억해야되는 값을 참조
-
-  useRef 사용법
-  const 참조객채명 = useRef(초기값) --> {current: 초기값}
+  2. 제어 컴포넌트 (리액트에서는 해당 방식 추천)
+  : 폼의 값 자체를 state에 담아둠
+  : 장점 - 리액트가 실시간으로 폼의 데이터의 변경사항을 추적가능
+  : 단점 - 개발로직이 비제어 컴포넌트 방식에 비해서는 구조가 복잡하고 컴포넌트의 재 랜더링을 많이 발생 시킴
 */
